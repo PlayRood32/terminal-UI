@@ -1,36 +1,162 @@
- Here is a professional and clear description for your GitHub repository:
-ManagerCommands
+<div align="center">
 
-ManagerCommands is a powerful GUI tool built with Avalonia UI, designed for developers and Linux enthusiasts who want to manage and execute complex terminal commands without the headache of manual typing or syntax errors.
+# ManagerCommands
 
-It is particularly effective for repetitive, high-stakes tasks like video encoding (FFmpeg), system maintenance, or project deployments where consistency is key.
-Key Features
+**A desktop command manager for saving, editing, and running reusable terminal workflows.**
 
-    Command Template Management: Save and organize your most-used commands in a clean, searchable library.
+Built with **C#**, **.NET 10**, and **Avalonia UI**.
 
-    Dynamic Variables (?variable?): Forget editing long command strings. Define variables within your commands, and the app automatically generates input fields for quick updates.
+</div>
 
-    Integrated Terminal: Watch your command execution in real-time within the app. It includes built-in cleaning of ANSI escape codes for a polished look.
+## Preview
 
-    Automated Workflow: Execute multiple lines of commands sequentially with customizable wait times between them.
+<table>
+  <tr>
+    <td width="50%">
+      <img width="100%" alt="ManagerCommands main screen" src="https://github.com/user-attachments/assets/5369a22e-e6d1-473a-a6a9-7dce646f2f7a" />
+    </td>
+    <td width="50%">
+      <img width="100%" alt="ManagerCommands command editor" src="https://github.com/user-attachments/assets/7d94711f-5658-45b1-a067-1fe171498f5e" />
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <img width="100%" alt="ManagerCommands terminal view" src="https://github.com/user-attachments/assets/f395639a-031d-4318-9361-11f3e27bc635" />
+    </td>
+    <td width="50%">
+      <img width="100%" alt="ManagerCommands settings view" src="https://github.com/user-attachments/assets/b7df773d-a8bf-4fba-b396-297e666954e7" />
+    </td>
+  </tr>
+</table>
 
-    Context-Aware Execution: Automatically performs a cd to your specified project location before running, ensuring your commands always hit the right target.
+## About
 
-    Fansubbing & Media Friendly: Perfect for anime encoding or batch processing—simply swap the file name or folder variable and hit run.
+ManagerCommands is a GUI tool for people who run the same terminal commands again and again.
 
-How It Works
+Instead of keeping long commands in notes, scripts, or shell history, you can save them as command templates, fill in dynamic values, choose the working directory, and run them from one place.
 
-    Define a Template: Add a command like this:
-    Bash
+## Features
 
-    ffmpeg -i "?Input_File?" -vf "subtitles='?Subtitle_File?'" -c:v libx264 -crf 18 "output.mp4"
+- **Command library** - save, search, edit, import, and delete commands.
+- **Dynamic variables** - use `?variable?` placeholders and fill them before running.
+- **Embedded terminal** - run commands and view output inside the app.
+- **Working directory per command** - choose where each command should run.
+- **Multi-line execution** - run a full command flow line by line.
+- **Configurable delay** - set the wait time between commands.
+- **Terminal customization** - change font, text color, and background color.
+- **Local JSON storage** - keep all user data on the local machine.
 
-    Fill the Variables: The app detects ?Input_File? and ?Subtitle_File? and provides text boxes for them.
+## Workflow
 
-    Execute: Click "Run". The app handles the directory change and executes the command exactly as configured.
+Commands are saved as reusable templates. A template can contain one command or several commands, with each line executed in order.
 
-<img width="1826" height="997" alt="image" src="https://github.com/user-attachments/assets/5369a22e-e6d1-473a-a6a9-7dce646f2f7a" />
-<img width="1891" height="902" alt="image" src="https://github.com/user-attachments/assets/7d94711f-5658-45b1-a067-1fe171498f5e" />
-<img width="1891" height="902" alt="image" src="https://github.com/user-attachments/assets/f395639a-031d-4318-9361-11f3e27bc635" />
-<img width="1618" height="776" alt="image" src="https://github.com/user-attachments/assets/b7df773d-a8bf-4fba-b396-297e666954e7" />
+Use `?variable?` placeholders for values that change between runs. ManagerCommands detects those placeholders and creates input fields for them before execution.
 
+Example template:
+
+```bash
+git status
+dotnet build "?ProjectFile?"
+```
+
+Here, `?ProjectFile?` becomes a field in the UI. After you enter a value, the final command is executed in the configured working directory and the output appears in the embedded terminal.
+
+## Install And Run
+
+### Requirements
+
+- **.NET 10 SDK** installed on your machine.
+- A desktop OS that can run Avalonia apps, such as **Windows** or **Linux**.
+- `git` for cloning the repository.
+
+Check that .NET is installed:
+
+```bash
+dotnet --version
+```
+
+The version should start with `10`. If the command is not found, install the .NET 10 SDK first.
+
+### Clone
+
+```bash
+git clone https://github.com/GOIOOD1234/terminal-UI.git
+cd terminal-UI
+```
+
+### Run From Source
+
+```bash
+dotnet restore
+dotnet run --project ManagerCommands.csproj
+```
+
+On Linux, the app opens as a desktop window and uses `/bin/bash` for the embedded terminal. On Windows, it uses `cmd.exe`.
+
+### Build A Standalone App
+
+Linux:
+
+```bash
+dotnet publish -c Release -r linux-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
+```
+
+Windows:
+
+```bash
+dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
+```
+
+Published files are generated under `bin/Release/`. The `bin/` and `obj/` folders are build output and should not be committed to the repository.
+
+## Data Storage
+
+User data is stored locally at:
+
+```text
+<LocalApplicationData>/MyCommend/Users/current_user.json
+```
+
+This file contains saved commands, terminal appearance settings, font settings, and the delay between commands.
+
+## Project Structure
+
+```text
+├── 📁 Assets
+│   ├── 🖼️ avalonia-logo.ico
+│   ├── 🖼️ ICON.ico
+│   └── 🖼️ ICON.png
+├── 📁 Models
+│   ├── 🟪 Commend.cs
+│   └── 🟪 User.cs
+├── 📁 Styles
+│   └── 📄 AppDefaultStyles.axaml
+├── 📁 Systems
+│   ├── 🟪 DataSystem.cs
+│   ├── 🟪 MenuStyles.cs
+│   ├── 🟪 MyColors.cs
+│   └── 🟪 TerminalSysytem.cs
+├── 📁 ViewModels
+│   ├── 🟪 MainWindowViewModel.cs
+│   └── 🟪 ViewModelBase.cs
+├── 📁 Views
+│   ├── 📄 CommendWindow.axaml
+│   ├── 🟪 CommendWindow.cs
+│   ├── 📄 MainWindow.axaml
+│   └── 🟪 MainWindow.axaml.cs
+├── 📄 App.axaml
+├── 🟪 App.axaml.cs
+├── 📄 app.manifest
+├── 🟪 ManagerCommands.csproj
+├── 🟪 Program.cs
+├── 📖 README.md
+├── 🟦 terminal-UI.sln
+└── 🟪 ViewLocator.cs
+```
+
+## Tech Stack
+
+- C#
+- .NET 10
+- Avalonia UI 12
+- CommunityToolkit.Mvvm
