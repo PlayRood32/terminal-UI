@@ -32,3 +32,5 @@ How It Works
 <img width="1826" height="997" alt="image" src="https://github.com/user-attachments/assets/5369a22e-e6d1-473a-a6a9-7dce646f2f7a" />
 <img width="1891" height="902" alt="image" src="https://github.com/user-attachments/assets/7d94711f-5658-45b1-a067-1fe171498f5e" />
 <img width="1891" height="902" alt="image" src="https://github.com/user-attachments/assets/f395639a-031d-4318-9361-11f3e27bc635" />
+<img width="1618" height="776" alt="image" src="https://github.com/user-attachments/assets/b7df773d-a8bf-4fba-b396-297e666954e7" />
+
