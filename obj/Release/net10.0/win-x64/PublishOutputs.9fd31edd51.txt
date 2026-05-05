@@ -1,0 +1,4 @@
+/var/home/BRO/ManagerCommands/bin/Release/net10.0/win-x64/publish/ManagerCommands.pdb
+/var/home/BRO/ManagerCommands/bin/Release/net10.0/win-x64/publish/libHarfBuzzSharp.pdb
+/var/home/BRO/ManagerCommands/bin/Release/net10.0/win-x64/publish/libSkiaSharp.pdb
+/var/home/BRO/ManagerCommands/bin/Release/net10.0/win-x64/publish/ManagerCommands.exe
