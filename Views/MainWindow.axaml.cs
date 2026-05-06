@@ -34,6 +34,7 @@ public partial class MainWindow : Window
         if (getUser != null && getUser.Commends != null && getUser.Commends.Count > 0)
         {
             Console.WriteLine("Loaded user");
+            PathSave.Text = "File Save in: "+_dataSystem.GetUserFilePath();
             _user = getUser;
             Timer.Value = _user.TimeWait;
 

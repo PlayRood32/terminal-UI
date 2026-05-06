@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Avalonia;
+using System.Windows.Input;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia;
@@ -197,8 +198,7 @@ public partial class CommendWindow : Window
         }
     }
 
-
-    private async void OnRunCommandClick(object? sender, RoutedEventArgs e)
+    public async void SendCommand()
     {
         if (string.IsNullOrWhiteSpace(ContentCommend.Text)) return;
 
@@ -246,6 +246,14 @@ public partial class CommendWindow : Window
         }
     }
 
+    private async void OnRunCommandClick(object? sender, RoutedEventArgs e)
+    {
+        SendCommand();
+    }
+
+    
+    
+    
 
     private async void OnSaveDateClick(object? sender, RoutedEventArgs e)
     {
@@ -359,4 +367,25 @@ public partial class CommendWindow : Window
             }
         };
     }
+
+    private void InputElement_OnKeyUp(object? sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Enter && e.KeyModifiers == KeyModifiers.None)
+        {
+            SendCommand();
+
+        }
+
+    }
+
+    private void Terminal_OnKeyUp(object? sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Enter && e.KeyModifiers == KeyModifiers.None)
+        {
+            SendCommand();
+
+        }
+    }
+
+    
 }

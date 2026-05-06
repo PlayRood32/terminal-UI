@@ -36,9 +36,11 @@ public class DataSystem
         string json = await File.ReadAllTextAsync(UserFilePath);
         return JsonSerializer.Deserialize<User>(json);
     }
-    
-    
-    
+
+    public string GetUserFilePath()
+    {
+        return UserFilePath;
+    }
     
     
 }
